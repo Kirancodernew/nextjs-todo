@@ -6,6 +6,9 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily:{
+      'DynaPuff':['DynaPuff','cursive']
+    },
     extend: {
       colors: {
         background: "var(--background)",
