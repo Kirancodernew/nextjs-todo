@@ -2,16 +2,14 @@ import { ConnectDB } from "@/lib/config/db";
 import TodoModel from "@/lib/models/TodoModel";
 import { NextResponse } from "next/server";
 
-const LoadDB=async()=>{
-    await ConnectDB();
-}
-LoadDB();
 export async function GET(request) {
-    const todos=await TodoModel.find({});
-
-    return (
-        NextResponse.json({todos:todos})
-    )
+    try {
+        await ConnectDB();
+        const todos = await TodoModel.find({});
+        return NextResponse.json({ todos });
+    } catch (error) {
+        return NextResponse.json({ error: "Failed to load todos" }, { status: 500 });
+    }
 }
 
 export async function POST(request) {
